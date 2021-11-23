@@ -1,6 +1,6 @@
-const HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
-const mnemonic = process.env["MNEMONIC"];
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const privateKey = process.env["PRIVATE_KEY"];
 const infuraProjectId = process.env["INFURA_PROJECT_ID"];
 
 module.exports = {
@@ -12,9 +12,7 @@ module.exports = {
     },
     mainnet: {
       provider: () => new HDWalletProvider({
-        mnemonic: {
-          phrase: mnemonic
-        },
+        privateKeys: [privateKey],
         providerOrUrl:
           "https://mainnet.infura.io/v3/" + infuraProjectId
       }),
@@ -22,9 +20,7 @@ module.exports = {
     },
     rinkeby: {
       provider: () => new HDWalletProvider({
-        mnemonic: {
-          phrase: mnemonic
-        },
+        privateKeys: [privateKey],
         providerOrUrl:
           "https://rinkeby.infura.io/v3/" + infuraProjectId
       }),
@@ -32,9 +28,7 @@ module.exports = {
     },
     polygon: {
       provider: () => new HDWalletProvider({
-        mnemonic: {
-          phrase: mnemonic
-        },
+        privateKeys: [privateKey],
         providerOrUrl:
           "https://polygon-mainnet.infura.io/v3/" + infuraProjectId
       }),
@@ -46,9 +40,7 @@ module.exports = {
     },
     mumbai: {
       provider: () => new HDWalletProvider({
-        mnemonic: {
-          phrase: mnemonic
-        },
+        privateKeys: [privateKey],
         providerOrUrl:
           "https://polygon-mumbai.infura.io/v3/" + infuraProjectId
       }),
@@ -56,16 +48,16 @@ module.exports = {
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
-      chainId: 80001
+      chainId: 80001,
     },
-    compilers: {
-      solc: {
-        version: "0.8.0",
-        docker: false,
-        settings: {
-          optimizer: {
-            enabled: true,
-          }
+  },
+  compilers: {
+    solc: {
+      version: "0.8.0",
+      docker: false,
+      settings: {
+        optimizer: {
+          enabled: true,
         }
       }
     }
